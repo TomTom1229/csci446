@@ -1,6 +1,6 @@
 $(function() {
 	$("#submit").click(checkFeelToday);
-});
+});  
 
 function checkFeelToday() {
 	if($("#feeling").val() == "")
