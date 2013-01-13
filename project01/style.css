@@ -1,0 +1,130 @@
+body {
+	font-family: "FF Balance", Arial, Helvetica, sans-serif;
+	background-color: #A9A9A9;
+	letter-spacing: -.07em;
+}
+
+div#page {
+	position: absolute;
+	top: 0;
+	left: 2em;
+	border: 1px solid #767676;
+	width: 96%;
+}
+
+div#header,
+div#footer,
+div#content,
+div#navbar,
+div#progress {
+	padding-left: .5em;
+}
+
+span.navbarbutton {
+	display: inline-block;
+	margin: .4em 2em .4em  0;
+}
+
+a {
+	text-decoration: none;
+	color: #FAFAFA;
+	transition: color 1s;
+	-webkit-transition: color 1s;
+}
+
+a:hover {
+	color: red;
+}
+
+div#header {
+	background-color: #c8c8c8;
+}
+
+div#navbar {
+	background-color: black;
+}
+
+div#content {
+	background-color: #FAFAFA;
+	float: left;
+	width: 99%;
+}
+
+div#footer {
+	background-color: #F0F0F0;
+	text-align: center;
+}
+
+div#form {
+	float: left;
+	width: 50%;
+}
+
+div#progress {
+	background-color: #F0F0FF;
+	float: right;
+	width: 40%;
+	margin-top: .5em;
+}
+
+p#progressDesc {
+	padding: .5em .5em 1em 0;
+}
+
+div#labels {
+	float: left;
+	width: 50%;
+}
+
+div#inputs {
+	float: right;
+	width: 50%;
+}
+
+div#form * > * > * {
+	margin: .75em .5em .75em 0;
+}
+
+input#submit {
+	margin-bottom: 1.5em;
+}
+
+p#first {
+	margin: .5em .5em 0 0;
+}
+
+p#extra {
+	margin: 0 .5em .5em 0em;
+}
+
+p {
+	margin: 0;
+}
+
+p#copyright {
+	display: inline-block;
+	font-size: 60%;
+	margin: .5em;
+}
+
+h1 {
+	margin: 0;
+}
+
+h2 {
+	margin: .5em 0 .25em 0;
+
+}
+
+h3 {
+	margin: 0;
+	font-size: 10pt;
+	color: #7B7774;
+	position: relative;
+	top: -5px;	
+}
+
+h4 {
+	margin: 0;
+	margin-top: .5em;
+}
