@@ -1,5 +1,5 @@
 body { 
-	font-family: "FF Balance", Arial, Helvetica, sans-serif;
+	font-family: "FF Balance", Helvetica, sans-serif;
 	background-color: #A9A9A9;
 	letter-spacing: -.07em;
 }
@@ -7,9 +7,8 @@ body {
 div#page {
 	position: absolute;
 	top: 0;
-	left: 2em;
+	margin: 0 2em;
 	border: 1px solid #767676;
-	width: 96%;
 }
 
 div#header,
@@ -63,12 +62,11 @@ div#form {
 div#progress {
 	background-color: #F0F0FF;
 	float: right;
-	width: 40%;
-	margin-top: .5em;
+	margin: .5em;
 }
 
 p#progressDesc {
-	padding: .5em .5em 1em 0;
+	padding: .5em 1.5em 1em 0;
 }
 
 div#labels {
@@ -103,8 +101,12 @@ p {
 
 p#copyright {
 	display: inline-block;
-	font-size: 60%;
+	font-size: 70%;
 	margin: .5em;
+}
+
+select#wanttofeel {
+	background-color: white;
 }
 
 h1 {
