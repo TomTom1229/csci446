@@ -34,6 +34,23 @@ def getStatic(type, highlight)
 	return html
 end
 
+def getFormPage
+	html = getHeader
+	html += "<form id='getAlbums'>"
+	html += getSelect("order", ["rank","name","year"])
+	html += getSelect("rank", (1..100).to_a)
+	html += "<input type='submit'>Get List</input>"
+	html += "</form>"
+	html += getFooter
+	html
+end
+
+def getSelect(id, options)
+	html = "<select id='#{id}' name='#{id}'>"
+	options.each do |val| html += "<option id='#{val}' value='#{val}'>#{val}</option>" end
+	html += "</select>"
+	html
+end
 
 class TOP
   @@root = File.expand_path(File.dirname(__FILE__))
@@ -43,8 +60,10 @@ class TOP
 	query = Rack::Utils.parse_query(env['QUERY_STRING'], "&")
 	if path == "/form"
 		html = getStatic(:name,1)
-	else
+	elsif query.length > 0
 		html = getStatic(query["order"].to_sym, query["rank"].to_i)
+	else
+		html = getFormPage
 	end
 	[200, {"Content-Type" => "text/html"}, [html]]
   end
