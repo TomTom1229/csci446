@@ -24,7 +24,7 @@ def getTop100(type, highlight)
 		html += "<tr #{style}><td>#{album[:rank]}</td><td>#{album[:name]}</td><td>#{album[:year]}</td></tr>"
 	}
 	html += "</table>"
-	return html
+	return html 
 end
 
 def getStatic(type, highlight)
