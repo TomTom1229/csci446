@@ -14,7 +14,7 @@ def getTop100(type, highlight)
 	html = "<h2>Sorted by #{type.to_s}</h2>"
 	File.readlines("top_100_albums.txt").each { |line|
 		name, year = line.split(',')
-		albums << { rank: i, name: name, year: year }
+		albums << { rank: i, name: name, year: year.to_i }
 		i+=1
 	}
 	albums.sort! do |album1,album2| album1[type] <=> album2[type] end
@@ -39,7 +39,7 @@ def getFormPage
 	html += "<form id='getAlbums'>"
 	html += getSelect("order", ["rank","name","year"])
 	html += getSelect("rank", (1..100).to_a)
-	html += "<input type='submit'>Get List</input>"
+	html += "<input type='submit' value='get list'/>"
 	html += "</form>"
 	html += getFooter
 	html
