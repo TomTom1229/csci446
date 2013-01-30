@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rolling Stone's Top 100 Albums</title>
+	<style>
+		.highlight {
+			color: red; 
+		}
+	</style>
+</head>
+<body>
+	<h1>Rolling Stone's Top 100 Albums</h1>
+	<table>
+		<tr>
+			<th>Rank</th><th>Album</th><th>Year</th>
+		</tr>
+		<% @albums.each do |album| %>
+		<tr class=<%= if album[:highlight] then "highlight" else "" end %>>
+			<td><%=album[:rank]%></td><td><%=album[:name]%></td><td><%=album[:year]%></td>
+		</tr>
+		<% end %>
+	</table>
+</body>
+</html>

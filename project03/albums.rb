@@ -1,71 +1,58 @@
 require 'rack'
+require 'erb'
 
-def getHeader
-	return "<!DOCTYPE html><html><head><title>Rolling Stones Top 100</title></head><body><h1>Rolling Stone's Top 100 Albums</h1>"
+class AlbumsList
+	include ERB::Util
+	attr_accessor :albums
+	def initialize(file, template, type, highlight)
+		setupAlbums(file, type, highlight)
+		@template = template
+	end
+
+	def setupAlbums(file, type, highlight)
+		@albums = []
+		i = 1
+		File.readlines("top_100_albums.txt").each { |line|
+			name, year = line.split(',')
+			@albums << { rank: i, name: name, year: year.to_i, highlight: highlight == i}
+			i+=1
+		}
+		albums.sort! do |album1, album2| album1[type] <=> album2[type] end
+	end
+
+	def render
+		ERB.new(File.read(@template)).result(binding)
+	end
 end
 
-def getFooter
-	return "</body></html>"
-end 
-
-def getTop100(type, highlight)
-	i = 1
-	albums = []
-	html = "<h2>Sorted by #{type.to_s}</h2>"
-	File.readlines("top_100_albums.txt").each { |line|
-		name, year = line.split(',')
-		albums << { rank: i, name: name, year: year.to_i }
-		i+=1
-	}
-	albums.sort! do |album1,album2| album1[type] <=> album2[type] end
-	html += "<table>"
-	albums.each { |album|
-		style = album[:rank] == highlight ? "style='color: red;'" : ""
-		html += "<tr #{style}><td>#{album[:rank]}</td><td>#{album[:name]}</td><td>#{album[:year]}</td></tr>"
-	}
-	html += "</table>"
-	return html 
-end
-
-def getStatic(type, highlight)
-	html = getHeader
-	html += getTop100(type,highlight)
-	html += getFooter
-	return html
+def getList(type, highlight)
+	list = AlbumsList.new("top_100_albums.txt", "list.html.erb", type, highlight)
+	response = Rack::Response.new(list.render)
+	response.finish
 end
 
 def getFormPage
-	html = getHeader
-	html += "<form id='getAlbums'>"
-	html += getSelect("order", ["rank","name","year"])
-	html += getSelect("rank", (1..100).to_a)
-	html += "<input type='submit' value='get list'/>"
-	html += "</form>"
-	html += getFooter
-	html
-end
-
-def getSelect(id, options)
-	html = "<select id='#{id}' name='#{id}'>"
-	options.each do |val| html += "<option id='#{val}' value='#{val}'>#{val}</option>" end
-	html += "</select>"
-	html
+	response = Rack::Response.new(ERB.new(File.read("form.html.erb")).result)
+	response.finish
 end
 
 class TOP
-  @@root = File.expand_path(File.dirname(__FILE__))
 
   def call(env)
-  	path = Rack::Utils.unescape(env['PATH_INFO'])
-	query = Rack::Utils.parse_query(env['QUERY_STRING'], "&")
-	if path == "/form"
-		html = getStatic(:name,1)
-	elsif query.length > 0
-		html = getStatic(query["order"].to_sym, query["rank"].to_i)
+  	request = Rack::Request.new(env)
+  	query = Rack::Utils.parse_query(env['QUERY_STRING'], "&")
+  	case request.path
+  	when "/form" then getFormPage
+	when "/list" then getList(:name,1)
+	when "/"
+		if query["order"] 
+			getList(query["order"].to_sym, query["rank"].to_i)
+		else
+			getFormPage
+		end 
 	else
-		html = getFormPage
+		getFormPage
 	end
-	[200, {"Content-Type" => "text/html"}, [html]]
   end
 end
 

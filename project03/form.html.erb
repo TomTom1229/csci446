@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rolling Stone's Top 100 Albums</title>
+</head>
+<body>
+	<h1>Rolling Stone's Top 100 Albums</h1>
+	<form id="submitAlbum">
+		<select id="order" name="order">
+			<option value="name">Name</option>
+			<option value="rank">Rank</option>
+			<option value="year">Year</option>
+		</select>
+		<select name="rank" id="rank">
+			<% (1..100).each do |x| %>
+			<option value=<%="#{x}"%>><%=x%></option>
+			<% end %>
+		</select>
+		<input type="submit" value="Get List" />
+	</form>
+</body>
+</html>
