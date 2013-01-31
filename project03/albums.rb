@@ -1,5 +1,6 @@
 require 'rack'
 require 'erb'
+require 'sqlite3'
 
 class AlbumsList
 	include ERB::Util
@@ -9,13 +10,10 @@ class AlbumsList
 		@template = template
 	end
 
-	def setupAlbums(file, type, highlight)
+	def setupAlbums(database, type, highlight)
 		@albums = []
-		i = 1
-		File.readlines("top_100_albums.txt").each { |line|
-			name, year = line.split(',')
-			@albums << { rank: i, name: name, year: year.to_i, highlight: highlight == i}
-			i+=1
+		database.execute("select * from albums").each { |row|
+			@albums << { rank: row[0], name: row[1], year: row[2], highlight: highlight == row[0]}
 		}
 		albums.sort! do |album1, album2| album1[type] <=> album2[type] end
 	end
@@ -26,7 +24,8 @@ class AlbumsList
 end
 
 def getList(type, highlight)
-	list = AlbumsList.new("top_100_albums.txt", "list.html.erb", type, highlight)
+	db = SQLite3::Database.new("albums.sqlite3.db")
+	list = AlbumsList.new(db, "list.html.erb", type, highlight)
 	response = Rack::Response.new(list.render)
 	response.finish
 end
