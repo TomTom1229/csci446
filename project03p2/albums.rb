@@ -13,9 +13,7 @@ get "/form" do
 	erb :form
 end
 post "/list" do
-	@albums = Album.all(:order => [ params[:order].to_sym.asc ])
-	@highlight = params[:rank].to_i
-	erb :list
+	redirect '/list?order=#{params[:order]}&rank=#{params[:rank]}'
 end
 get "/list" do
 	order = params[:order] ? params[:order].to_sym.asc : :title.asc
