@@ -1,0 +1,10 @@
+<table>
+	<tr>
+		<th>Rank</th><th>Album</th><th>Year</th>
+	</tr>
+	<% @albums.each do |album| %>
+	<tr class=<%= if album[:rank] == @highlight then "highlight" else "" end %>>
+		<td><%=album[:rank]%></td><td><%=album[:title]%></td><td><%=album[:year]%></td>
+	</tr>
+	<% end %>
+</table>

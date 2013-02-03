@@ -1,0 +1,13 @@
+<form id="submitAlbum" action="/list" method="post">
+	<select id="order" name="order">
+		<option value="title">Title</option>
+		<option value="rank">Rank</option>
+		<option value="year">Year</option>
+	</select>
+	<select name="rank" id="rank">
+		<% (1..100).each do |x| %>
+		<option value=<%="#{x}"%>><%=x%></option>
+		<% end %>
+	</select>
+	<input type="submit" value="Get List" />
+</form>
