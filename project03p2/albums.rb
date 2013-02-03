@@ -17,8 +17,9 @@ post "/list" do
 	@highlight = params[:rank].to_i
 	erb :list
 end
-get "/list" do 
-	@albums = Album.all(:order => [ :title.asc ])
-	@highlight = 60
+get "/list" do
+	order = params[:order] ? params[:order].to_sym.asc : :title.asc
+	@albums = Album.all(:order => [ order ])
+	@highlight = params[:rank] ? params[:rank].to_i : 60
 	erb :list
 end
