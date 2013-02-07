@@ -13,6 +13,7 @@ get "/form" do
 	erb :form
 end
 post "/list" do
+	puts params
 	redirect '/list?order=#{params[:order]}&rank=#{params[:rank]}'
 end
 get "/list" do

@@ -1,3 +1,4 @@
+<div class="well">
 <form id="submitAlbum" action="/list" method="post">
 	<select id="order" name="order">
 		<option value="title">Title</option>
@@ -9,5 +10,6 @@
 		<option value=<%="#{x}"%>><%=x%></option>
 		<% end %>
 	</select>
-	<input type="submit" value="Get List" />
+	<button id="submit" type="submit" class="btn btn-primary">Get List</button>
 </form>
+</div>
