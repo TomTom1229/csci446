@@ -1,6 +1,10 @@
+<div class="container">
 <h1>Editing product</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="btn-group">
+<%= link_to 'Show', @product, :class => "btn" %>
+<%= link_to 'Back', products_path, :class => "btn" %>
+</div>
+</div>
