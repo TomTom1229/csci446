@@ -2,7 +2,10 @@
 <h2>Your Cart</h2>
 <ul class="nav nav-tabs nav-stacked">
   <% @cart.line_items.each do |item| %>
-    <li><%= link_to item.product.title, item.product %></li>
+    <div>
+        <span class="badge"><%= item.quantity %></span>
+        <%= link_to item.product.title, item.product, :class => "btn" %>
+    </div>
   <% end %>
 </ul>
 <div class="btn-group">
