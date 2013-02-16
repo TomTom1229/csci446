@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<h2>Your Cart</h2>
+<ul class="nav nav-tabs nav-stacked">
+  <% @cart.line_items.each do |item| %>
+    <li><%= link_to item.product.title, item.product %></li>
+  <% end %>
+</ul>
+<div class="btn-group">
+<%= link_to 'Edit', edit_cart_path(@cart), :class => "btn" %> |
+<%= link_to 'Back', carts_path, :class => "btn" %>
+</div>

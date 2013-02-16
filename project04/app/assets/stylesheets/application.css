@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+
+#header {
+  width: 100%;
+}
+
+#clock {
+  float: right;
+}
