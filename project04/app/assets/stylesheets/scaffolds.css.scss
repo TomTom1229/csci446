@@ -12,6 +12,14 @@ p, ol, ul, td {
   line-height: 18px;
 }
 
+ul#header {
+  width: 100%;
+}
+
+li#clock {
+  float: right;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
