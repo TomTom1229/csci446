@@ -1,4 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+one:
+  title: title
+  description: description
+  image_url: url.png
+  price: 0.01
+
+two:
+  title: a really long title with much text
+  description: 234567890-poiuytrewqasdfghjkl;/.mnbvcxz
+  image_url: 0.png
+  price: 99.99
 
 ruby:
   title: Programming Ruby 1.9
