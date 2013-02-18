@@ -1,14 +1,19 @@
-<p id="notice"><%= notice %></p>
-<h2>Your Cart</h2>
-<ul class="nav nav-tabs nav-stacked">
-  <% @cart.line_items.each do |item| %>
-    <div>
-        <span class="badge"><%= item.quantity %></span>
-        <%= link_to item.product.title, item.product, :class => "btn" %>
-    </div>
-  <% end %>
-</ul>
-<div class="btn-group">
-<%= link_to 'Edit', edit_cart_path(@cart), :class => "btn" %> |
-<%= link_to 'Back', carts_path, :class => "btn" %>
+<% if notice %>
+<div class="alert">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<%= notice %>
 </div>
+<% end %>
+<h2>Your Cart</h2>
+<table class="table">
+  <tbody>
+      <% render(@cart.line_items) %>
+      <tr>
+        <td id="emptycart">
+            <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are You Sure?' }, :class => "btn btn-inverse", remote: true %>
+        </td>
+        <td><p class="pull-right"><strong>Total</strong><p></td>
+        <td><%= number_to_currency(@cart.total_price) %></td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,6 @@
+$("#cart").html("<%=j render @cart %>");
+
+if($("#cart tr").length == 2) { $("#cart").show('slide', {direction : "right"}); }
+
+$("#current_item").addClass("current_item");
+setTimeout(function() {$("#current_item").removeClass("current_item").addClass("current_item_done")}, 1000);

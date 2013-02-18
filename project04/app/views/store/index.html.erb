@@ -1,5 +1,8 @@
 <% if notice %>
-<p id="notice"><%= notice %></p>
+<div class="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <%= notice %>
+</div>
 <% end %>
 
 <h1>Catalog</h1>
@@ -7,14 +10,14 @@
 <% @products.each do |product| %>
     <div class="entry row">
         <h3><%= product.title %></h3>
-        <div class="span4">
-            <%= image_tag(product.image_url) %>
+        <div class="span4 productimage">
+            <%= image_tag(product.image_url, :class => "btn") %>
         </div>
         <div class="span8">
             <p><%= sanitize(product.description) %></p>
             <div class="price_line">
                 <span class="price"><%= number_to_currency(product.price) %></span>
-                <%= button_to 'Add to Cart', line_items_path(product_id: product), :class => "btn" %>
+                <%= button_to 'Add to Cart', line_items_path(product_id: product), :class => "btn", remote: true %>
             </div>
         </div>
     </div>

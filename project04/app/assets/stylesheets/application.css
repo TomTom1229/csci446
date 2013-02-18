@@ -19,3 +19,35 @@
 #clock {
   float: right;
 }
+
+#emptycart {
+  padding: 0;
+  margin: 0;
+}
+
+#cart {
+    position: fixed;
+    right: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.current_item {
+    transition: background-color 2s;
+    -ms-transition: background-color 2s;
+    -moz-transition: background-color 2s;
+    -o-transition: background-color 2s;
+    -webkit-transition: background-color 2s;
+    background-color: #00A600;
+}
+
+.current_item_done {
+    transition: background-color 2s;
+    -ms-transition: background-color 2s;
+    -moz-transition: background-color 2s;
+    -o-transition: background-color 2s;
+    -webkit-transition: background-color 2s;
+    background-color: transparent;
+}

@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= controller.controller_name %> container">
+<body class="<%= controller.controller_name %>">
 <div class="navbar">
     <div class="navbar-inner">
         <span class="brand">Bookshelf</span>
@@ -18,9 +18,18 @@
             <li id="clock"></li>
         </ul>
     </div>
-</div> 
-<div id="main">
-<%= yield %>
+</div>
+<div id="main" class="container-fluid">
+  <div class="row-fluid">
+    <div class="span8 store">
+      <%= yield %>
+    </div>
+    <% if @cart %>
+      <%= hidden_div_if(@cart.line_items.empty?, {id: "cart",  class: "well span4"}) do %>
+        <%= render(@cart) %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 </body>
 </html>
