@@ -1,0 +1,16 @@
+- if notice
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    = notice
+%h1 Catalog
+- @products.each do |product|
+  .entry.row
+    %h3= product.title
+    .span4.productimage
+      = image_tag(product.image_url, :class => "btn")
+    .span8
+      %p= sanitize(product.description)
+      .price_line
+        %span.price= number_to_currency(product.price)
+        = button_to 'Add to Cart', line_items_path(product_id: product), :class => "btn", remote: true
+%p= will_paginate @products

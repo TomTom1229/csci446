@@ -1,0 +1,16 @@
+- if notice
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    = notice
+%h2 Your Cart
+%table.table
+  %tbody
+    - render(@cart.line_items)
+    %tr
+      %td#emptycart
+        = button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are You Sure?' }, :class => "btn btn-inverse", remote: true
+      %td
+        %p.pull-right
+          %strong Total
+        %p/
+      %td= number_to_currency(@cart.total_price)
