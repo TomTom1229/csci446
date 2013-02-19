@@ -1,0 +1,23 @@
+%h1 Listing products
+= link_to 'New Product', new_product_path, :class => "btn"
+%table.table.table-hover
+  %thead
+    %tr
+      %th Title
+      %th Description
+      %th Image url
+      %th Price
+      %th
+      %th
+      %th
+  %tbody
+    - @products.each do |product|
+      %tr
+        %td= product.title
+        %td= product.description
+        %td= product.image_url
+        %td= number_to_currency(product.price)
+        %td= link_to 'Show', product, :class => "btn"
+        %td= link_to 'Edit', edit_product_path(product), :class => "btn"
+        %td= link_to 'Delete', product, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-inverse"
+= will_paginate @products

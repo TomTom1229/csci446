@@ -1,0 +1,14 @@
+.hero-unit
+    - if notice
+        .alert
+            %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+            = notice
+    %h1
+        = @user.name
+    %p
+        %br/
+        %b Password hash:
+        = @user.password_digest
+    .btn-group
+        = link_to 'Edit', edit_user_path(@user), :class => "btn"
+        = link_to 'Back', users_path, :class => "btn"

@@ -1,0 +1,20 @@
+.hero-unit
+  - if notice
+    .alert
+      %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+      = notice
+  %h1
+    = @product.title
+  %p
+    %b Description:
+    = @product.description
+  %p
+    %b Image url:
+    = @product.image_url
+  %p
+    %b Price:
+    = '%.2f' % @product.price
+  .btn-group
+    = link_to 'Edit', edit_product_path(@product), :class => "btn"
+    |
+    \#{link_to 'Back', products_path, :class=> "btn"}

@@ -1,0 +1,22 @@
+%h1 Listing users
+- if notice
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+
+= link_to 'New User', new_user_path, :class => "btn"
+%br/
+
+%table.table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+  - @users.each do |user|
+    %tr
+      %td= user.name
+      %td= link_to 'Show', user, :class => "btn"
+      %td= link_to 'Edit', edit_user_path(user), :class => "btn"
+      %td= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-inverse"
+
+%p= will_paginate @users

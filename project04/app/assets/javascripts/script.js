@@ -1,5 +1,6 @@
 $(function(){
     setInterval(updateClock, 1000);
+    $("em.current").addClass("disabled");
 });
 
 function updateClock() {

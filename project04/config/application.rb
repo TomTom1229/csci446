@@ -59,6 +59,11 @@ module Depot
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # haml instead of ERB
+    config.generators do |g|
+        g.template_engine :haml
+    end
+
     # Error Field Styling
     ActionView::Base.field_error_proc = Proc.new { |html, instance|
         "<span class='label label-important'>#{html}</label>".html_safe

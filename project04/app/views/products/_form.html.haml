@@ -1,0 +1,36 @@
+= form_for(@product, :html => { :class => "form-horizontal" }) do |f|
+  - if @product.errors.any?
+    .alert.alert-error.alert-block
+      %h3
+        = pluralize(@product.errors.count, "error")
+        prohibited this product from being saved:
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  .control-group
+    .field
+      = f.label :title, :class => "control-label"
+      %br/
+      .controls
+        = f.text_field :title
+  .control-group
+    .field
+      = f.label :description, :class => "control-label"
+      %br/
+      .controls
+        = f.text_area :description, rows: 6
+  .control-group
+    .field
+      = f.label :image_url, :class => "control-label"
+      %br/
+      .controls
+        = f.text_field :image_url
+  .control-group
+    .field
+      = f.label :price, :class => "control-label"
+      %br/
+      .controls
+        = f.text_field :price
+  .control-group
+    .actions
+      = f.submit :class => "btn"
