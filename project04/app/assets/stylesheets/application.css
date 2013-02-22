@@ -51,3 +51,24 @@
     -webkit-transition: background-color 2s;
     background-color: transparent;
 }
+
+.title {
+  margin-left: 0;
+}
+
+form input[type="number"] {
+  margin-bottom: 0;
+}
+
+.product_image {
+  float: left;
+}
+
+.product {
+  display: inline-block;
+}
+
+.product_info {
+  margin: 1em;
+  width: 50%;
+}

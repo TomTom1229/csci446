@@ -43,18 +43,22 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     @cart = current_cart
+    puts params
     product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product.id)
-    @line_item.product = product
+    quantity = params[:quantity]
+    quantity.to_i.times do
+      @line_item = @cart.add_product(product.id)
+      @line_item.product = product
 
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to store_url }
-        format.js { @current_item = @line_item }
-        format.json { render json: @line_item, status: :created, location: @line_item }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @line_item.save
+          format.html { redirect_to store_url }
+          format.js { @current_item = @line_item }
+          format.json { render json: @line_item, status: :created, location: @line_item }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

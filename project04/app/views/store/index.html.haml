@@ -4,13 +4,16 @@
     = notice
 %h1 Catalog
 - @products.each do |product|
-  .entry.row
-    %h3= product.title
-    .span4.productimage
-      = image_tag(product.image_url, :class => "btn")
-    .span8
-      %p= sanitize(product.description)
-      .price_line
+  %h3.title= product.title
+  .entry
+    .product_image.product
+      = image_or_default(product.image_url, :class => "btn")
+    .info.product.product_info
+      %p.product_info= sanitize(product.description)
+      .price_line.product_info
         %span.price= number_to_currency(product.price)
-        = button_to 'Add to Cart', line_items_path(product_id: product), :class => "btn", remote: true
+      =form_tag line_items_url, :method => "create", :remote => true do
+        = number_field_tag :quantity, 1, :min => 1
+        = hidden_field_tag :product_id, product.id
+        = submit_tag "Add to Cart", :class => "btn"
 %p= will_paginate @products
